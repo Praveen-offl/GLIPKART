@@ -1,0 +1,295 @@
+<!-- E-Commerce Portal (HTML + CSS + JavaScript) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Portal</title>
+
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f2f2f2; }
+        header { background: #333; color: #fff; padding: 15px; text-align: center; font-size: 24px; }
+        nav { background: #444; padding: 10px; }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .section { display: none; padding: 20px; }
+        .active { display: block; }
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        input, button, textarea {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+        }
+        button {
+            background: #333;
+            color: white;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        button:hover { background: #555; }
+    </style>
+</head>
+<body>
+
+<header>GLIPKART</header>
+
+<nav>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('products')">Product Items</a>
+    <a onclick="showSection('register')">Register</a>
+    <a onclick="showSection('login')">Login</a>
+    <a onclick="showSection('orders')">Orders</a>
+    <a onclick="showSection('wishlist')">Wishlist</a>
+    <a onclick="showSection('reviews')">Reviews</a>
+    <a onclick="showSection('customer')">Customer Care</a>
+    <a onclick="showSection('about')">About Us</a>
+    <a onclick="showSection('contact')">Contact Us</a>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="section active">
+    <div class="home-images">
+        <img src="C:\Users\praveen\Documents\COLLEGE STUFFS\web dev assign\Consumer-Electronics-Appliance_Sept-19.jpg" alt="Banner 1" style="width:25%; margin:10px 0; border-radius:8px;">
+        <img src="C:\Users\praveen\Documents\COLLEGE STUFFS\web dev assign\0007_Layer-6.webp" alt="Banner 2" style="width:25%; margin:10px 0; border-radius:8px;">
+        <img src="C:\Users\praveen\Documents\COLLEGE STUFFS\web dev assign\images.jpeg" alt="Banner 3" style="width:25%; margin:10px 0; border-radius:8px;">
+
+        <h2 style='margin-top:20px;'>Featured Categories</h2>
+        <div style='display:flex; gap:15px; flex-wrap:wrap;'>
+            <div class='card' style='width:30%; text-align:center;'>
+                <img src="https://via.placeholder.com/200?text=Electronics" style='width:100%; border-radius:5px;'>
+                <p>Electronics</p>
+            </div>
+            <div class='card' style='width:30%; text-align:center;'>
+                <img src="https://via.placeholder.com/200?text=Fashion" style='width:100%; border-radius:5px;'>
+                <p>Fashion</p>
+            </div>
+            <div class='card' style='width:30%; text-align:center;'>
+                <img src="https://via.placeholder.com/200?text=Groceries" style='width:100%; border-radius:5px;'>
+                <p>Groceries</p>
+            </div>
+        </div>
+
+        <h2 style='margin-top:20px;'>Top Products</h2>
+        <div style='display:flex; gap:15px; flex-wrap:wrap;'>
+            <div class='card' style='width:30%; text-align:center;'>
+                <img src="https://via.placeholder.com/200?text=Smartphone" style='width:100%; border-radius:5px;'>
+                <p>Smartphone</p>
+            </div>
+            <div class='card' style='width:30%; text-align:center;'>
+                <img src="https://via.placeholder.com/200?text=Headphones" style='width:100%; border-radius:5px;'>
+                <p>Headphones</p>
+            </div>
+            <div class='card' style='width:30%; text-align:center;'>
+                <img src="https://via.placeholder.com/200?text=Laptop" style='width:100%; border-radius:5px;'>
+                <p>Laptop</p>
+            </div>
+        </div>
+    </div>
+    <h2>Welcome to Our E-Commerce Portal</h2>
+    <p>Your one‑stop online shopping platform.</p>
+</section>
+
+<!-- PRODUCT ITEMS -->
+<section id="products" class="section">
+    <h2>Products</h2>
+
+    <div class="card">
+        <h3>Smartphone</h3>
+        <p>₹14,999</p>
+        <button onclick="addToWishlist('Smartphone')">Add to Wishlist</button>
+        <button onclick="addToOrders('Smartphone')">Order Now</button>
+    </div>
+
+    <div class="card">
+        <h3>Wireless Headphones</h3>
+        <p>₹2,499</p>
+        <button onclick="addToWishlist('Wireless Headphones')">Add to Wishlist</button>
+        <button onclick="addToOrders('Wireless Headphones')">Order Now</button>
+    </div>
+</section>
+
+<!-- REGISTER -->
+<section id="register" class="section">
+    <h2>User Registration</h2>
+    <div class="card">
+        <input id="reg_name" placeholder="Full Name">
+        <input id="reg_email" placeholder="Email">
+        <input id="reg_pass" type="password" placeholder="Password">
+        <input id="reg_phone" placeholder="Phone Number">
+        <button onclick="registerUser()">Register</button>
+        <p id="reg_msg"></p>
+    </div>
+</section>
+
+<!-- LOGIN -->
+<section id="login" class="section">
+    <h2>Login</h2>
+    <div class="card">
+        <input id="log_email" placeholder="Email">
+        <input id="log_pass" type="password" placeholder="Password">
+        <button onclick="loginUser()">Login</button>
+        <p id="log_msg"></p>
+    </div>
+</section>
+
+<!-- ORDERS -->
+<section id="orders" class="section">
+    <h2>Your Orders</h2>
+    <div id="order_list"></div>
+</section>
+
+<!-- WISHLIST -->
+<section id="wishlist" class="section">
+    <h2>Your Wishlist</h2>
+    <div id="wishlist_list"></div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="section">
+    <h2>Comments & Reviews</h2>
+    <div class="card">
+        <textarea id="review_text" placeholder="Write your review..."></textarea>
+        <button onclick="addReview()">Submit</button>
+    </div>
+    <div id="review_list"></div>
+</section>
+
+<!-- CUSTOMER CARE -->
+<section id="customer" class="section">
+    <h2>Customer Care</h2>
+    <div class="card">
+        <input id="cc_name" placeholder="Your Name">
+        <textarea id="cc_issue" placeholder="Describe your issue..."></textarea>
+        <button onclick="submitIssue()">Submit Ticket</button>
+        <p id="cc_msg"></p>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+    <h2>About Us</h2>
+    <p>An educational demo E‑Commerce website created using HTML, CSS, and JavaScript.</p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+    <h2>Contact Us</h2>
+    <p>Email: support@ecommerce.com</p>
+    <p>Phone: +91 98765 43210</p>
+</section>
+
+<script>
+    // Section Navigation
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+
+    // Storage Arrays
+    let wishlist = [];
+    let orders = [];
+    let reviews = [];
+
+    // Wishlist & Orders
+    function addToWishlist(item) {
+        wishlist.push(item);
+        renderWishlist();
+        alert(item + " added to wishlist");
+    }
+
+    function addToOrders(item) {
+        orders.push(item);
+        renderOrders();
+        alert(item + " added to orders");
+    }
+
+    function renderWishlist() {
+        document.getElementById('wishlist_list').innerHTML = wishlist.map(i => `<div class='card'>${i}</div>`).join('');
+    }
+
+    function renderOrders() {
+        document.getElementById('order_list').innerHTML = orders.map(i => `<div class='card'>${i}</div>`).join('');
+    }
+
+    // Reviews
+    function addReview() {
+        let text = document.getElementById('review_text').value;
+        if (text.length < 3) {
+            alert("Review must be at least 3 characters");
+            return;
+        }
+        reviews.push(text);
+        document.getElementById('review_text').value = '';
+        renderReviews();
+    }
+
+    function renderReviews() {
+        document.getElementById('review_list').innerHTML = reviews.map(r => `<div class='card'>${r}</div>`).join('');
+    }
+
+    // Registration
+    function registerUser() {
+        let name = document.getElementById('reg_name').value;
+        let email = document.getElementById('reg_email').value;
+        let pass = document.getElementById('reg_pass').value;
+        let phone = document.getElementById('reg_phone').value;
+
+        if (!email.includes('@')) {
+            document.getElementById('reg_msg').innerText = 'Invalid email';
+            return;
+        }
+
+        if (pass.length < 6) {
+            document.getElementById('reg_msg').innerText = 'Password must be at least 6 characters';
+            return;
+        }
+
+        if (phone.length != 10) {
+            document.getElementById('reg_msg').innerText = 'Phone must be 10 digits';
+            return;
+        }
+
+        document.getElementById('reg_msg').innerText = 'Registration Successful!';
+    }
+
+    // Login
+    function loginUser() {
+        let email = document.getElementById('log_email').value;
+        let pass = document.getElementById('log_pass').value;
+
+        if (!email.includes('@') || pass.length < 6) {
+            document.getElementById('log_msg').innerText = 'Invalid Credentials';
+            return;
+        }
+
+        document.getElementById('log_msg').innerText = 'Login Successful!';
+    }
+
+    // Customer Care
+    function submitIssue() {
+        let name = document.getElementById('cc_name').value;
+        let issue = document.getElementById('cc_issue').value;
+
+        if (name.length < 3 || issue.length < 5) {
+            document.getElementById('cc_msg').innerText = 'Please fill all fields properly';
+            return;
+        }
+
+        document.getElementById('cc_msg').innerText = 'Support Ticket Submitted!';
+    }
+</script>
+
+</body>
+</html>
